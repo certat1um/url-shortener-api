@@ -29,8 +29,6 @@ $ npm run start:dev
 
 ## Run tests
 
-> Run tests
-
 ```bash
 $ npm run test
 ```
