@@ -47,6 +47,10 @@ $  GET <KEY_NAME>
 $ npm run test
 ```
 
+## Postman / Insomnia
+
+> You can import environment for your API testing app from `/postman` directory
+
 ## Swagger API Documentation
 
 > Swagger Documentation route:
