@@ -22,11 +22,12 @@ describe('ShortUrlService', () => {
           useValue: {
             findOne: jest.fn(),
             updateOne: jest.fn(),
+            exec: jest.fn(),
             create: jest.fn(),
           },
         },
         {
-          provide: CACHE_MANAGER,
+          provide: 'REDIS_CLIENT',
           useValue: {
             get: jest.fn(),
             set: jest.fn(),
@@ -51,9 +52,14 @@ describe('ShortUrlService', () => {
       (shortUrlRepository.findOne as jest.Mock).mockResolvedValue({
         full: expected,
       });
+      (shortUrlRepository.updateOne as jest.Mock).mockReturnValue({
+        exec: jest.fn().mockResolvedValue(null),
+      });
 
       const result = await shortUrlService.getByCode('TeSt12');
       expect(result).toEqual(expected);
+      expect(shortUrlRepository.updateOne).toHaveBeenCalled();
+      expect(shortUrlRepository.updateOne().exec).toHaveBeenCalled();
     });
 
     it('404 short url not found', async () => {

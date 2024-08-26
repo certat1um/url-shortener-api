@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Redirect } from '@nestjs/common';
 import { ShortUrlService } from './shortUrl.service';
 import { CreateShortenDto } from './dto/CreateShorten.dto';
 import { ShortUrl } from 'src/schemas/shortUrl.schema';
-import { CacheInterceptor, CacheKey } from '@nestjs/cache-manager';
+import { CacheKey } from '@nestjs/cache-manager';
 import { ApiTags } from '@nestjs/swagger';
 import {
   CreateDecorators,

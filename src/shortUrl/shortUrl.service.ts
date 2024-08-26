@@ -1,11 +1,10 @@
+import * as dotenv from 'dotenv';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ShortUrl } from '../schemas/shortUrl.schema';
 import { CreateShortenDto } from './dto/CreateShorten.dto';
-import { Cache } from 'cache-manager';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import * as dotenv from 'dotenv';
+import { Redis } from 'ioredis';
 dotenv.config();
 
 const { BASE_URL } = process.env;
@@ -14,11 +13,11 @@ const { BASE_URL } = process.env;
 export class ShortUrlService {
   constructor(
     @InjectModel(ShortUrl.name) private shortUrlModel: Model<ShortUrl>,
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+    @Inject('REDIS_CLIENT') private readonly redisService: Redis,
   ) {}
 
   async getByCode(code: string): Promise<string> {
-    const cachedFullUrl: string | null = await this.cacheManager.get(code);
+    const cachedFullUrl: string | null = await this.redisService.get(code);
     const shortUrlPath = `${BASE_URL}/${code}`;
     let shortUrl: ShortUrl;
 
@@ -32,12 +31,12 @@ export class ShortUrlService {
       }
 
       // Storing in cache
-      await this.cacheManager.set(code, shortUrl.full);
+      await this.redisService.set(code, shortUrl.full);
     }
 
     // Update clicks
     await this.shortUrlModel
-      .findOneAndUpdate({ short: shortUrlPath }, { $inc: { clicks: 1 } })
+      .updateOne({ short: shortUrlPath }, { $inc: { clicks: 1 } })
       .exec();
 
     return cachedFullUrl || shortUrl.full;

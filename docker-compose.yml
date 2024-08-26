@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  url_redis_store:
-    image: redis:latest
-    ports:
-      - '3333:6379'
-    environment:
-      - REDIS_PORT=3333
