@@ -1,14 +1,14 @@
 import { Body, Controller, Get, Param, Post, Redirect } from '@nestjs/common';
 import { ShortUrlService } from './shortUrl.service';
 import { CreateShortenDto } from './dto/CreateShorten.dto';
-import { ShortUrl } from 'src/schemas/shortUrl.schema';
+import { ShortUrl } from './schema/shortUrl.schema';
 import { CacheKey } from '@nestjs/cache-manager';
 import { ApiTags } from '@nestjs/swagger';
 import {
   CreateDecorators,
   GetByCodeDecorators,
   GetStatsByCodeDecorators,
-} from './shortUrl.swagger';
+} from './swagger/shortUrl.swagger';
 
 @ApiTags('shortUrl')
 @Controller()

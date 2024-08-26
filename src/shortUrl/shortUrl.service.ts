@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ShortUrl } from '../schemas/shortUrl.schema';
+import { ShortUrl } from './schema/shortUrl.schema';
 import { CreateShortenDto } from './dto/CreateShorten.dto';
 import { Redis } from 'ioredis';
 dotenv.config();

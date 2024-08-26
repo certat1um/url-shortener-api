@@ -7,7 +7,7 @@ import {
   ApiOkResponse,
   ApiOperation,
 } from '@nestjs/swagger';
-import { CreateShortenDto } from './dto/CreateShorten.dto';
+import { CreateShortenDto } from '../dto/CreateShorten.dto';
 
 export const GetByCodeDecorators = () => {
   return applyDecorators(

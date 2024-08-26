@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ShortUrl, ShortUrlSchema } from '../schemas/shortUrl.schema';
+import { ShortUrl, ShortUrlSchema } from './schema/shortUrl.schema';
 import { ShortUrlService } from './shortUrl.service';
 import { ShortUrlController } from './shortUrl.controller';
 import { APP_GUARD } from '@nestjs/core';

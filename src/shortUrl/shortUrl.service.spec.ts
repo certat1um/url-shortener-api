@@ -1,7 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { ShortUrlService } from './shortUrl.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ShortUrl } from '..//schemas/shortUrl.schema';
+import { ShortUrl } from './schema/shortUrl.schema';
 import { Model } from 'mongoose';
 import { NotFoundException } from '@nestjs/common';
 import { CreateShortenDto } from './dto/CreateShorten.dto';
