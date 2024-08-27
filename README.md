@@ -59,6 +59,6 @@ $ npm run test
 
 ## Render Deploy
 
-> Project also deployed on **Render.com**.
+> Project also deployed on **Render.com**. (requests can be delayed by 50 seconds or more in due to free plan of using Render service)
 >
 > Base route: `https://url-shortener-api-hdwm.onrender.com`
